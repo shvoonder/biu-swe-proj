@@ -18,14 +18,6 @@ where
 	tasks.project_id = 2 -- integer value should be replaced by java code with the project id
 ;	
 
--- get all sub_tasks under a task
-select
-	tasks.*
-from
-	tasks
-where
-	tasks.project_id = 2 -- integer value should be replaced by java code with the project id
-;
 
 select
 	sub_tasks.*
