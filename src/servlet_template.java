@@ -30,8 +30,7 @@ public class servlate_template extends HttpServlet{
     "<h2 class=\"w3-xlarge w3-animate-top w3-center\">Please login first. </h2>\n" +
     "</div>\n" +
     "\n" +
-    "<div style=\"margin-right:400px; margin-left:400px\" class=\"center\">\n" +
-    "<form class=\"w3-container w3-card-2\" action=404.html method=\"post\" id=login>\n" +
+ x    "<form class=\"w3-container w3-card-2\" action=404.html method=\"post\" id=login>\n" +
     "  <h2>Login</h2>\n" +
     "  <div class=\"w3-section\">      \n" +
     "    <label>Username</label>\n" +
