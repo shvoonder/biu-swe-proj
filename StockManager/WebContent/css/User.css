@@ -1,0 +1,31 @@
+@charset "windows-1255";
+
+body {
+  font: 15px sans-serif;
+
+}
+
+.split {
+  color: red;
+  height: 90%;
+  width: 25%;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 10px;
+  top: 10%
+}
+
+.left {
+  left: 1;
+  background-color: blue;
+}
+
+.centered {
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}

@@ -1,0 +1,65 @@
+@charset "windows-1255";
+
+
+p,h2{
+font-family:"Comic Sans MS", cursive, sans-serif;
+}
+
+input[type=text],input[type=password],select{
+border-radius:2px;
+}
+
+#login{
+border:1px solid black;
+padding:5px;
+text-style:italic;
+}
+
+
+.button {
+	background-color:#44c767;
+	-moz-border-radius:14px;
+	-webkit-border-radius:14px;
+	border-radius:14px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:sans-serif;
+	font-size:15px;
+	padding:8px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.button:hover {
+	background-color:#5cbf2a;
+}
+.button:active {
+	position:relative;
+	top:1px;
+}
+
+.alert {
+  padding-top: 300px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+

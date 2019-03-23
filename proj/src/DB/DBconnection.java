@@ -29,7 +29,7 @@ public class DBconnection {
         String sqlCreateUsers = "CREATE TABLE `SE_proj`.`users` ( `id` INT(30) NOT NULL AUTO_INCREMENT , `first_name` VARCHAR(30) NOT NULL , `sure_name` VARCHAR(30) NOT NULL , `user_name` VARCHAR(30) NOT NULL , `email` VARCHAR(50) NOT NULL , `is_admin` BOOLEAN NOT NULL , PRIMARY KEY (`id`))";
         }
 
-
+        
     }
 
 
