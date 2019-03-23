@@ -11,20 +11,27 @@
 <p>
 <div class="w3-card white w3-row-padding w3-container ">
 <ul class="w3-ul w3-border-top">
-      <h3>projects</h3>
+      <h3>skiles</h3>
       <table class="w3-table w3-striped w3-bordered scrollWindows ">
       <thead>
       <tr class="w3-theme">
         <th> <div class="w3-left">
           <a class="w3-button w3-circle  w3-large w3-theme"><i class="fa fa-plus"></i></a> &nbsp
-        </div>Project name</th>
+        </div>Name</th>
+        <th>specialization </th>
       </tr>
       </thead>
       <tbody>
         <tr>
-        <td>&nbsp &nbsp &nbsp &nbsp &nbsp <button class="w3-btn w3-white" onclick="move()">porject_name</button>
+        <td>&nbsp &nbsp &nbsp &nbsp &nbsp <button class="w3-btn w3-white" onclick="move()">Name</button>
         </div></td>
-        <td> </td>
+        <td> <div class="w3-dropdown-hover">
+          <button class="w3-button w3-white ">specialization <i class="fa fa-caret-down"></i></button>
+          <div class="w3-dropdown-content w3-bar-block w3-border">
+            <a href="#" class="w3-bar-item w3-button">full stack</a>
+            <a href="#" class="w3-bar-item w3-button">back end</a>
+            <a href="#" class="w3-bar-item w3-button">front end</a>
+          </div></td>
 
   </tr>
       </tbody>
