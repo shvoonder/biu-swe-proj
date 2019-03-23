@@ -36,7 +36,7 @@
   </div>
   <div <h3 class="w3-large w3-animate-top w3-center">Don't have an account?</h3>
     <div class="w3-white">
-      <a href="signup.html" class="w3-button">Sign up now</a>
+      <a href="signup.jsp" class="w3-button">Sign up now</a>
 </form>
 </div>
 <hr>

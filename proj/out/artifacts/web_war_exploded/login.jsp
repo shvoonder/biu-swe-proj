@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 1
-  Date: 3/21/2019
-  Time: 03:34 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <title>Task Manegment Project</title>
@@ -17,8 +9,8 @@
 <body>
 <!-- Header -->
 <header class="w3-container w3-theme w3-padding" id="myHeader">
-    <div class="w3-center">
-        <h1 class="w3-xxxlarge w3-animate-bottom">Task Manegment Project</h1>
+  <div class="w3-center">
+  <h1 class="w3-xxxlarge w3-animate-bottom">Task Manegment Project</h1>
 </header>
 
 <!-- Modal -->
@@ -28,26 +20,25 @@
 </div>
 
 <div style="margin-right:400px; margin-left:400px" class="center">
-    <form class="w3-container w3-card-2" action=404.html method="post" id=login>
-        <h2>Login</h2>
-        <div class="w3-section">
-            <label>Username</label>
-            <input class="w3-input" name="user" type="text" required>
-        </div>
-        <div class="w3-section">
-            <label>Password</label>
-            <input class="w3-input" name="password" type="password" required>
-        </div>
+<form class="w3-container w3-card-2" action=404.html method="post" id=login>
+  <h2>Login</h2>
+  <div class="w3-section">
+    <label>Username</label>
+    <input class="w3-input" name="user" type="text" required>
+  </div>
+  <div class="w3-section">
+    <label>Password</label>
+    <input class="w3-input" name="password" type="password" required>
+  </div>
 
-        <div class="w3-section">
-            <button class="w3-button w3-theme" type="submit" formmethod="post">Login</button>
-        </div>
-        <div <h3 class="w3-large w3-animate-top w3-center">Don't have an account?</h3>
-        <button class="w3-button w3-white" type="submit" formmethod="post">sign up for Task Manger</button>
-</div>
+  <div class="w3-section">
+    <button class="w3-button w3-theme" type="submit" formmethod="post">Login</button>
+  </div>
+  <div <h3 class="w3-large w3-animate-top w3-center">Don't have an account?</h3>
+    <div class="w3-white">
+      <a href="signup.jsp" class="w3-button">Sign up now</a>
 </form>
 </div>
 <hr>
 </body>
 </html>
-
