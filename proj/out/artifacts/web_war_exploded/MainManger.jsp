@@ -26,7 +26,7 @@
             <tr class="w3-theme">
                 <th> <div class="w3-left">
                     <formbutton class="w3-button w3-circle w3-large w3-theme" >
-                        <a href="task.jsp">
+                        <a href="homeScreen.jsp">
                         <i class="fa fa-plus"></a></i></formbutton> &nbsp
                 </div>
                     Project name</th>
