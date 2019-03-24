@@ -86,7 +86,13 @@ public class DBconnection {
         return false;
     }
 
-    public static
+    public static boolean addTask (String userID, String task, ) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        Statement stmt=con.createStatement();
+        int numOfColEfected = 0;
+
+    }
 }
 
 
