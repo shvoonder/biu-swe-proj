@@ -23,15 +23,15 @@
   <h2>sign up</h2>
   <div class="w3-section">
     <label>first name</label>
-    <input class="w3-input"  name="first_name" type="text" required>
+    <input class="w3-input" name="firstName" type="text" required>
     <label>last name</label>
-    <input class="w3-input"  name="last_name" type="text" required>
+    <input class="w3-input" name="lastName" type="text" required>
     <label>Username</label>
-    <input class="w3-input"  name="user_name" type="text" required>
+    <input class="w3-input" name="userName" type="text" required>
     <label>Password</label>
-    <input class="w3-input"  name="password" type="password" required>
+    <input class="w3-input" name="password" type="password" required>
     <label>Email</label>
-    <input class="w3-input"  name="Email" type="email" required>
+    <input class="w3-input" name="Email" type="email" required>
   </div>
   <div class="w3-section">
     <button class="w3-button w3-theme" type="submit" formmethod="post">sign up</button>
