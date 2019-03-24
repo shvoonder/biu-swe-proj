@@ -22,9 +22,9 @@
 <form class="w3-container w3-card-2" action=404.html method="post" id=login>
   <h2>sign up</h2>
   <div class="w3-section">
-    <label>first name</label>
+    <label>First name</label>
     <input class="w3-input" name="firstName" type="text" required>
-    <label>last name</label>
+    <label>Last name</label>
     <input class="w3-input" name="lastName" type="text" required>
     <label>Username</label>
     <input class="w3-input" name="userName" type="text" required>
