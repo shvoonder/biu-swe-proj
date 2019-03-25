@@ -2,9 +2,6 @@
 .idea/workspace.xml
 .idea/vcs.xml
 .idea/misc.xml
-*.xml
-*.xml
-*.xml
 projV2/out/artifacts/unnamed/WEB-INF/classes/DB/DBconnection.class
 projV2/out/artifacts/web_war_exploded/WEB-INF/classes/DB/DBconnection.class
 projV2/out/artifacts/unnamed/WEB-INF/classes/Model/PriorityType.class
@@ -30,3 +27,6 @@ projV2/.idea/workspace.xml
 .idea/biu-swe-proj.iml
 projV2/out/production/projV2/Model/Task.class
 projV2/out/production/projV2/Model/PriorityType.class
+projV2/out/production/projV2/Model/Task.class
+projV2/out/production/projV2/Model/PriorityType.class
+.idea/
