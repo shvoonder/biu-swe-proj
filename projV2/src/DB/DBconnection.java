@@ -68,8 +68,6 @@ public class DBconnection {
         return false;
     }
 
-    \""+name+"\"
-
     public static boolean createUser (String username, String password, boolean isAdmin, String firstName, String sureName, String email) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
