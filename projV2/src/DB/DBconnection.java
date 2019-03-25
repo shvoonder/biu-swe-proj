@@ -3,6 +3,9 @@ package DB;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
+import Model.User;
+import Model.Task;
+import Model.SubTask;
 import Model.*;
 import javafx.scene.layout.Priority;
 
@@ -81,12 +84,12 @@ public class DBconnection {
         ResultSet rs = getProject();
         Project project = null;
         while(rs.next()){
-            if (rs.getString("user_id").equals(user_id)){
+            if (rs.getString("user_id").equals(project_id)){
                 int id = Integer.parseInt(rs.getString("id"));
                 String name = rs.getString("name");
                 PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));
                 User user = getUserByUserName(rs.getString("user_id"));
-                tempTask = Project(id, name, priority, user);
+                project = new Project(id, name, priority, user);
             }
         }
         return project;
@@ -179,6 +182,24 @@ public class DBconnection {
         return user;
     }
 
+    public static User getUserById(int user_id) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
+        User user = null;
+        ResultSet rs = getUsersList();
+        while(rs.next()){
+            if (Integer.parseInt(rs.getString("id")) == (user_id)){
+                int id = Integer.parseInt(rs.getString("id"));
+                String firstName = rs.getString("first_name");
+                String sureName = rs.getString("sure_name");
+                String userName = rs.getString("user_name");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                Boolean isAdmin = Boolean.parseBoolean(rs.getString("is_admin"));
+                user = new User(id, firstName, sureName, userName, email, password, isAdmin);
+            }
+        }
+        return user;
+    }
+
     public static PriorityType getPriorityTypeById(int priority_id) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
         PriorityType priority = null;
         ResultSet rs = getPriorityType();
@@ -201,9 +222,9 @@ public class DBconnection {
                 int id = Integer.parseInt(rs.getString("id"));
                 String task = rs.getString("task");
                 PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));
-                User user = getUserByUserName(rs.getString("user_id"));
+                User user = getUserById(Integer.parseInt(rs.getString("user_id")));
                 Project project = getProjectById(Integer.parseInt(rs.getString("project_id")));
-                tempTask = Task(id, task, priority, user, project);
+                tempTask = new Task(id, task, priority, user, project);
                 tasks.add(tempTask);
             }
         }
@@ -211,7 +232,7 @@ public class DBconnection {
     }
 
 
-    public static List getTaskByProject (int projectId) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
+    public static List<Task> getTaskByProject (int projectId) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
         ResultSet rs = getTask();
         List<Task> tasks = new ArrayList<Task>();
         Task tempTask;
@@ -220,27 +241,42 @@ public class DBconnection {
                 int id = Integer.parseInt(rs.getString("id"));
                 String task = rs.getString("task");
                 PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));
-                User user = getUserByUserName(rs.getString("user_id"));
+                User user = getUserById(Integer.parseInt((rs.getString("user_id"))));
                 Project project = getProjectById(Integer.parseInt(rs.getString("project_id")));
-                tempTask = Task(id, task, priority, user, project);
+                tempTask = new Task(id, task, priority, user, project);
                 tasks.add(tempTask);
             }
         }
         return tasks;
     }
 
-    public static List<SubTask> getSubTasksByTasks(String user_id) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
+    public static Task getTaskById (int TaskId) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
         ResultSet rs = getTask();
-        List<SubTask> subTasks = new ArrayList<SubTasks>();
+        Task tasks = null;
+        while(rs.next()){
+            if (Integer.parseInt(rs.getString("project_id")) == (TaskId)){
+                int id = Integer.parseInt(rs.getString("id"));
+                String task = rs.getString("task");
+                PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));
+                User user = getUserByUserName(rs.getString("user_id"));
+                Project project = getProjectById(Integer.parseInt(rs.getString("project_id")));
+                tasks = new Task(id, task, priority, user, project);
+            }
+        }
+        return tasks;
+    }
+
+    public static List<SubTask> getSubTasksByTask(int task_id) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
+        ResultSet rs = getTask();
+        List<SubTask> subTasks = new ArrayList<SubTask>();
         SubTask tempSubTask;
         while(rs.next()){
             if (rs.getString("task_id").equals(task_id)){
                 int id = Integer.parseInt(rs.getString("id"));
                 String subTask = rs.getString("sub_task");
-                int priorityId = Integer.parseInt(rs.getString("priority_id"));
-                int userId = Integer.parseInt(rs.getString("user_id"));
-                int taskId= Integer.parseInt(rs.getString("project_id"));
-                tempSubTask = SubTask(id, subTask, priorityId, userId, taskId);
+                User user = getUserById(Integer.parseInt(rs.getString("user_id")));
+                Task task = getTaskById(Integer.parseInt(rs.getString("task_id")));
+                tempSubTask = new SubTask(id, subTask, user, task);
                 subTasks.add(tempSubTask);
             }
         }

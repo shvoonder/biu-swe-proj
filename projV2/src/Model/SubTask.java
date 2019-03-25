@@ -1,7 +1,7 @@
 package Model;
 
-import Models.Task;
-import Models.User;
+import Model.Task;
+import Model.User;
 
 public class SubTask {
     private int id;
