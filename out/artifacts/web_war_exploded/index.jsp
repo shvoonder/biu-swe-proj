@@ -20,25 +20,23 @@
 </div>
 
 <div style="margin-right:400px; margin-left:400px" class="center">
-<form class="w3-container w3-card-2" action=404.html method="post" id=login>
+<form class="w3-container w3-card-2" action=/auth.html method="get">
   <h2>Login</h2>
-  <div class="w3-section">
+  <div class="w3-section">      
     <label>Username</label>
-    <input class="w3-input" name="user" type="text" required>
+    <input class="w3-input" type="text" required>
   </div>
-  <div class="w3-section">
+  <div class="w3-section">      
     <label>Password</label>
-    <input class="w3-input" name="password" type="password" required>
+    <input class="w3-input" type="password" required>
   </div>
-
-  <div class="w3-section">
+  <div class="w3-section">      
     <button class="w3-button w3-theme" type="submit" formmethod="post">Login</button>
-  </div>
-  <div <h3 class="w3-large w3-animate-top w3-center">Don't have an account?</h3>
-   <button class="w3-button w3-white" type="submit" formmethod="post">sign up for Task Manger</button>
   </div>
 </form>
 </div>
+</div>
 <hr>
+
 </body>
 </html>

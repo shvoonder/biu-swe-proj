@@ -10,32 +10,32 @@
 <!-- Header -->
 <header class="w3-container w3-theme w3-padding" id="myHeader">
   <div class="w3-center">
-  <h1 class="w3-xxxlarge w3-animate-bottom">Task Manegment Project</h1>
+  <h1 class="w3-xxxlarge w3-animate-bottom">Sign up</h1>
 </header>
 
 <!-- Modal -->
 <hr>
-<h2 class="w3-xlarge w3-animate-top w3-center">Welcome to the Task Manager.</h2>
-<h2 class="w3-xlarge w3-animate-top w3-center">Please login first. </h2>
+<h2 class="w3-xlarge w3-animate-top w3-center">Fill in your details </h2>
 </div>
 
 <div style="margin-right:400px; margin-left:400px" class="center">
 <form class="w3-container w3-card-2" action=404.html method="post" id=login>
-  <h2>Login</h2>
+  <h2>sign up</h2>
   <div class="w3-section">
+    <label>first name</label>
+    <input class="w3-input" name="first name" type="text" required>
+    <label>last name</label>
+    <input class="w3-input" name="last name" type="text" required>
     <label>Username</label>
     <input class="w3-input" name="user" type="text" required>
-  </div>
-  <div class="w3-section">
     <label>Password</label>
     <input class="w3-input" name="password" type="password" required>
+    <label>Email</label>
+    <input class="w3-input" name="EMail" type="email" required>
   </div>
-
   <div class="w3-section">
-    <button class="w3-button w3-theme" type="submit" formmethod="post">Login</button>
+    <button class="w3-button w3-theme" type="submit" formmethod="post">sign up</button>
   </div>
-  <div <h3 class="w3-large w3-animate-top w3-center">Don't have an account?</h3>
-   <button class="w3-button w3-white" type="submit" formmethod="post">sign up for Task Manger</button>
   </div>
 </form>
 </div>

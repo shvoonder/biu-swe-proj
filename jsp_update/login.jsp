@@ -35,8 +35,8 @@
     <button class="w3-button w3-theme" type="submit" formmethod="post">Login</button>
   </div>
   <div <h3 class="w3-large w3-animate-top w3-center">Don't have an account?</h3>
-   <button class="w3-button w3-white" type="submit" formmethod="post">sign up for Task Manger</button>
-  </div>
+    <div class="w3-white">
+      <a href="signup.html" class="w3-button">Sign up now</a>
 </form>
 </div>
 <hr>
