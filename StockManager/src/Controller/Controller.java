@@ -161,6 +161,4 @@ public class Controller {
 		}
 		return portfolioList;
 	}
-	
-	
 }

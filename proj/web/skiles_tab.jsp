@@ -23,7 +23,7 @@
       </thead>
       <tbody>
         <tr>
-        <td>&nbsp &nbsp &nbsp &nbsp &nbsp <button class="w3-btn w3-white" onclick="move()">Name</button>
+        <td> &nbsp &nbsp &nbsp &nbsp <button class="w3-btn w3-white" onclick="move()">Name</button>
         </div></td>
         <td> <div class="w3-dropdown-hover">
           <button class="w3-button w3-white ">specialization <i class="fa fa-caret-down"></i></button>

@@ -134,8 +134,6 @@ public class DBconnection {
         ResultSet rs = stmt.executeQuery("SELECT  * FROM sub_tasks");
         return rs;
     }
-
-
 }
 
 
