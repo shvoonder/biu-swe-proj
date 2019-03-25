@@ -6,8 +6,8 @@ public class User {
     private String firstName;
     private String sureName;
     private String userName;
-    private String email;
     private String password;
+    private String email;
     private boolean is_admin;
 
     public User(int id, String firstName, String sureName, String userName, String email, String password, boolean is_admin) {

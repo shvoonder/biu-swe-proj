@@ -2,23 +2,23 @@ package Model;
 
 public class Project {
 
-    private Integer id;
+    private int id;
     private String name;
-    private Integer priorityId;
-    private Integer userId;
+    private int priorityId;
+    private int userId;
 
-    public Project(Integer id, String name, Integer priorityId, Integer userId) {
+    public Project(int id, String name, int priorityId, int userId) {
         this.id = id;
         this.name = name;
         this.priorityId = priorityId;
         this.userId = userId;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -30,19 +30,19 @@ public class Project {
         this.name = name;
     }
 
-    public Integer getPriorityId() {
+    public int getPriorityId() {
         return priorityId;
     }
 
-    public void setPriorityId(Integer priorityId) {
+    public void setPriorityId(int priorityId) {
         this.priorityId = priorityId;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }

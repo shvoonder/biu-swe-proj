@@ -2,19 +2,19 @@ package Model;
 
 public class PriorityType {
 
-    private Integer id;
+    private int id;
     private String name;
 
-    public PriorityType(Integer id, String name) {
+    public PriorityType(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
