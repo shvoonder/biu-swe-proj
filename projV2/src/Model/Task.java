@@ -1,21 +1,21 @@
 package Model;
 
+import javafx.scene.layout.Priority;
+
 public class Task {
 
     private int id;
     private String task;
-    private int priorityId;
-    private int userId;
-    private int taskId;
-    private int projectId;
+    private PriorityType priority;
+    private User user;
+    private Project project;
 
-    public Task(int id, String task, int priorityId, int userId, int taskId, int projectId) {
+    public Task(int id, String task, PriorityType priority, User user, Project project) {
         this.id = id;
         this.task = task;
-        this.priorityId = priorityId;
-        this.userId = userId;
-        this.taskId = taskId;
-        this.projectId = projectId;
+        this.priority = priority;
+        this.user = user;
+        this.project = project;
     }
 
     public int getId() {
@@ -34,35 +34,27 @@ public class Task {
         this.task = task;
     }
 
-    public int getPriorityId() {
-        return priorityId;
+    public PriorityType getPriority() {
+        return priority;
     }
 
-    public void setPriorityId(int priorityId) {
-        this.priorityId = priorityId;
+    public void setPriority(PriorityType priority) {
+        this.priority = priority;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getTaskId() {
-        return taskId;
+    public Project getProject() {
+        return project;
     }
 
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
-    }
-
-    public int getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

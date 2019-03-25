@@ -1,17 +1,19 @@
 package Model;
 
+import javafx.scene.layout.Priority;
+
 public class Project {
 
     private int id;
     private String name;
-    private int priorityId;
-    private int userId;
+    private PriorityType priority;
+    private User user;
 
-    public Project(int id, String name, int priorityId, int userId) {
+    public Project(int id, String name, PriorityType priority, User user) {
         this.id = id;
         this.name = name;
-        this.priorityId = priorityId;
-        this.userId = userId;
+        this.priority = priority;
+        this.user = user;
     }
 
     public int getId() {
@@ -30,19 +32,19 @@ public class Project {
         this.name = name;
     }
 
-    public int getPriorityId() {
-        return priorityId;
+    public PriorityType getPriority() {
+        return priority;
     }
 
-    public void setPriorityId(int priorityId) {
-        this.priorityId = priorityId;
+    public void setPriority(PriorityType priority) {
+        this.priority = priority;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
