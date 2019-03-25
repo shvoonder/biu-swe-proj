@@ -1,19 +1,19 @@
 package Model;
 
-public class SubTask {
+import Models.Task;
+import Models.User;
 
+public class SubTask {
     private int id;
     private String subTask;
-    private int priorityId;
-    private int userId;
-    private int taskId;
+    private User user;
+    private Task task;
 
-    public SubTask(int id, String subTask, int priorityId, int userId, int taskId) {
+    public SubTask(int id, String subTask, User user, Task task) {
         this.id = id;
         this.subTask = subTask;
-        this.priorityId = priorityId;
-        this.userId = userId;
-        this.taskId = taskId;
+        this.user = user;
+        this.task = task;
     }
 
     public int getId() {
@@ -32,27 +32,19 @@ public class SubTask {
         this.subTask = subTask;
     }
 
-    public int getPriorityId() {
-        return priorityId;
+    public User getUser() {
+        return user;
     }
 
-    public void setPriorityId(int priorityId) {
-        this.priorityId = priorityId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getUserId() {
-        return userId;
+    public Task getTask() {
+        return task;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
+    public void setTask(Task task) {
+        this.task = task;
     }
 }
