@@ -8,16 +8,16 @@ public class User {
     private String userName;
     private String password;
     private String email;
-    private boolean is_admin;
+    private boolean isAdmin;
 
-    public User(int id, String firstName, String sureName, String userName, String email, String password, boolean is_admin) {
+    public User(int id, String firstName, String sureName, String userName, String email, String password, boolean isAdmin) {
         this.id = id;
         this.firstName = firstName;
         this.sureName = sureName;
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.is_admin = is_admin;
+        this.isAdmin = isAdmin;
     }
 
     public int getId() {
@@ -68,16 +68,12 @@ public class User {
         this.password = password;
     }
 
-    public boolean isIs_admin() {
-        return is_admin;
+    public boolean isisAdmin() {
+        return isAdmin;
     }
 
-    public void setIs_admin(boolean is_admin) {
-        this.is_admin = is_admin;
-    }
-
-    public boolean loadUser(String username){
-
+    public void setisAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
 }

@@ -3,6 +3,7 @@ package DB;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
+import Model.User;
 
 public class DBconnection {
 
@@ -67,6 +68,8 @@ public class DBconnection {
         return false;
     }
 
+    \""+name+"\"
+
     public static boolean createUser (String username, String password, boolean isAdmin, String firstName, String sureName, String email) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
@@ -127,13 +130,35 @@ public class DBconnection {
         return false;
     }
 
-    public static boolean getSubTask (String userID, String task, int priorityID, int skillID, int projectID) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
+    public static ResultSet getSubTask (String userID, String task, int priorityID, int skillID, int projectID) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         Statement stmt=con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT  * FROM sub_tasks");
         return rs;
     }
+
+    public static User getUserByUserName(String username) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
+        User user;
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        Statement stmt=con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT  * FROM sub_tasks");
+        while(rs.next()){
+            if (rs.getString("user_name").equals(username)){
+                int id = Integer.parseInt(rs.getString("id"));
+                String firstName = rs.getString("first_name");
+                String sureName = rs.getString("sure_name");
+                String userName = rs.getString("user_name");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                Boolean isAdmin = Boolean.parseBoolean(rs.getString("is_admin"));
+                user = new User(id, firstName, sureName, userName, email, password, isAdmin);
+            }
+        }
+        return user;
+    }
+
 }
 
 
