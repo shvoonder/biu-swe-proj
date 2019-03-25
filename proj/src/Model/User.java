@@ -75,4 +75,9 @@ public class User {
     public void setIs_admin(boolean is_admin) {
         this.is_admin = is_admin;
     }
+
+    public boolean loadUser(String username){
+
+    }
+
 }
