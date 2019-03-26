@@ -218,12 +218,12 @@ public class DBconnection {
         return priority;
     }
 
-    public static List<Task> getTasksByUser(String user_id) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
+    public static List<Task> getTasksByUser(int user_id) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
         ResultSet rs = getTask();
         List<Task> tasks = new ArrayList<Task>();
         Task tempTask;
         while(rs.next()){
-            if (rs.getString("user_id").equals(user_id)){
+            if (Integer.parseInt(rs.getString("user_id")) == (user_id)){
                 int id = Integer.parseInt(rs.getString("id"));
                 String task = rs.getString("task");
                 PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));

@@ -1,3 +1,4 @@
+<%@ page import="Model.User"%>
 <!DOCTYPE html>
 <html>
 <title>W3.CSS Template</title>
@@ -25,10 +26,8 @@ div.scrollWindows {
 
 <div class="w3-card white w3-row-padding w3-container w3-full">
   <div class=" w3-black w3-center">
-    <h3>Project Name</h3>
-    </div>
-    <div class="w3-light-gray">
-      <div id="myBar" class="w3-center w3-padding w3-theme" style="width:5%">danymic percentage</div>
+    <% User user = (User)session.getAttribute("user"); %>
+    <h3>Welcome <%= user.getFirstName() %></h3>
     </div>
     </div>
 
