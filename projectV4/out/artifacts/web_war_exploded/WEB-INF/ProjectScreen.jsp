@@ -56,7 +56,7 @@ div.scrollWindows {
   for(Task t:tasks){%>
 <tr>
   <td>
-    <a href= <%="ProjectScreen" + "?task=" + t.getId()%> >
+    <a href= <%="TaskScreen" + "?task=" + t.getId()%> >
       <%=t.getTask()%>
     </a>
   </td>

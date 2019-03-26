@@ -1,7 +1,6 @@
 package Controller;
 
 import DB.DBconnection;
-import Model.Project;
 import Model.Task;
 import Model.User;
 
@@ -17,10 +16,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/ProjectScreen")
-public class ProjectScreen extends HttpServlet {
+public class TaskScreen extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public ProjectScreen() {
+    public TaskScreen() {
         super();
     }
 
@@ -43,9 +42,9 @@ public class ProjectScreen extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        List<Task> tasks = null;
+        Task task = null;
         try {
-            tasks = DBconnection.getTaskByProject(Integer.parseInt(request.getParameter("project")));
+            task = DBconnection.getTaskById(Integer.parseInt(request.getParameter("task")));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -55,18 +54,15 @@ public class ProjectScreen extends HttpServlet {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        request.setAttribute("tasks", tasks);
-        for (Task t:tasks){
-            System.out.println("in for");
-            System.out.println(t.getId());
-        }
-        session.setAttribute("project", request.getParameter("project"));
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ProjectScreen.jsp");
+        request.setAttribute("task", task);
+        request.setAttribute("users", DBconnection.getUsersList());
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/TaskScreen.jsp");
         rd.forward(request,response);
     }
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        // update db
+        response.sendRedirect("/ProjectScreen" + "?project=" + request.getParameter("project"));
     }
 }

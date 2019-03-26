@@ -220,6 +220,24 @@ public class DBconnection {
         return user;
     }
 
+    public static List<User>getUserListArr() throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
+        List<User> users = new ArrayList<User>();
+        User temp= null;
+        ResultSet rs = getUsersList();
+        while(rs.next()){
+            int id = Integer.parseInt(rs.getString("id"));
+            String firstName = rs.getString("first_name");
+            String sureName = rs.getString("sure_name");
+            String userName = rs.getString("user_name");
+            String email = rs.getString("email");
+            String password = rs.getString("password");
+            Boolean isAdmin = Boolean.parseBoolean(rs.getString("is_admin"));
+            temp = new User(id, firstName, sureName, userName, email, password, isAdmin);
+            users.add(temp);
+        }
+        return users;
+    }
+
     public static PriorityType getPriorityTypeById(int priority_id) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
         PriorityType priority = null;
         ResultSet rs = getPriorityType();
