@@ -1,3 +1,7 @@
+<%@ page import="Model.Project"%>
+<%@ page import="Model.User"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <title>W3.CSS Template</title>
@@ -11,20 +15,25 @@
 <p>
 <div class="w3-card white w3-row-padding w3-container ">
 <ul class="w3-ul w3-border-top">
-      <h3>projects</h3>
-      <table class="w3-table w3-striped w3-bordered scrollWindows ">
-      <thead>
-      <tr class="w3-theme">
-        <th> <a class="w3-left">
-            <a class="w3-theme"> <a href="NewProjectName"</a><i class="fa fa-plus"></i></a>  &nbsp
-        </div>Project name</th>
-      </tr>
-      </thead>
-      <tbody>
+      <h3>Projects</h3>
+    <a class="w3-theme"> <a href="NewProjectName"</a><i class="fa fa-plus"></i></a>  &nbsp
+    <table class="w3-table w3-striped w3-bordered scrollWindows "   >
+        <th><b>Project Name</b></th>
+        <th><b>Priority</b></th>
+        <%
+            List<Project> projects =
+            (ArrayList<Project>)request.getAttribute("projects");
+            for(Project p:projects){%>
         <tr>
-        <td>&nbsp &nbsp &nbsp &nbsp &nbsp <button class="w3-btn w3-white" onclick="move()">porject_name</button>
-        </div></td>
-        <td> </td>
+            <td>
+                <a href= <%="ProjectScreen" + "?project=" + p.getId()%> >
+                <%=p.getName()%>
+                </a>
+            </td>
+            <td><%=p.getPriority().getName()%></td>
+        </tr>
+        <%}%>
+    </table>
 
   </tr>
       </tbody>

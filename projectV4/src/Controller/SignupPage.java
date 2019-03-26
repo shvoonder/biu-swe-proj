@@ -35,7 +35,7 @@ public class SignupPage extends HttpServlet {
         }
 
         User user;
-        Boolean isAdminBool = false;
+        Boolean isAdminBool = true;
         String firstName = request.getParameter("first_name");
         String lastName = request.getParameter("last_name");
         String userName = request.getParameter("user_name");
@@ -44,6 +44,7 @@ public class SignupPage extends HttpServlet {
         String isAdmin = request.getParameter("is_admin");
         if (isAdmin == "null"){
             isAdminBool = false;
+            System.out.println("got not admin");
         }
         try {
             if (!DBconnection.createUser(userName, password, isAdminBool, firstName, lastName, email)){

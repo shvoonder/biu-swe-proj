@@ -27,16 +27,40 @@ public class ManagerPage extends HttpServlet {
         super();
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
-    {
-        HttpSession session=request.getSession(true);
-        User user = DBconnection.getUserByUserName(session.getAttribute("username").toString());
-        List<Project> projects = DBconnection.getProjectsByUserID(user.getId());
-        request.setAttribute("projects",projects );
-    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/MainManager.jsp");
-      rd.forward(request,response);
+        HttpSession session=request.getSession(true);
+        if (session.getAttribute("username") == null){
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/LoginError.jsp");
+            rd.forward(request,response);
+        }
+        User user = null;
+        try {
+            user = DBconnection.getUserByUserName(session.getAttribute("username").toString());
+            System.out.println(user.getId());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        List<Project> projects = null;
+        try {
+            projects = DBconnection.getProjectsByUserID(user.getId());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        request.setAttribute("projects",projects );
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/MainManager.jsp");
+        rd.forward(request,response);
     }
 
 

@@ -130,6 +130,19 @@ public class DBconnection {
         return false;
     }
 
+    public static boolean createProject(String name, PriorityType priority, User user) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        Statement stmt=con.createStatement();
+        int numOfColEffected = 0;
+        String queryString = String.format("INSERT INTO `se_proj`.`projects` (`priority_id`, `user_id`, `name`) VALUES ('%d', '%d', '%s')", priority.getId(), user.getId(), name);
+        System.out.println(queryString);
+        numOfColEffected = stmt.executeUpdate(queryString);
+        if (numOfColEffected != 0)
+            return true;
+        return false;
+    }
+
     public static boolean addTask (String userID, String task, int priorityID, int skillID, int projectID) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
@@ -180,7 +193,9 @@ public class DBconnection {
                 String userName = rs.getString("user_name");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
-                Boolean isAdmin = Boolean.parseBoolean(rs.getString("is_admin"));
+                Boolean isAdmin = false;
+                if (rs.getString("is_admin").equals("1"))
+                    isAdmin=true;
                 user = new User(id, firstName, sureName, userName, email, password, isAdmin);
             }
         }
@@ -242,7 +257,7 @@ public class DBconnection {
         List<Task> tasks = new ArrayList<Task>();
         Task tempTask;
         while(rs.next()){
-            if (rs.getString("project_id").equals(projectId)){
+            if (Integer.parseInt(rs.getString("project_id")) == (projectId)){
                 int id = Integer.parseInt(rs.getString("id"));
                 String task = rs.getString("task");
                 PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));
@@ -301,7 +316,7 @@ public class DBconnection {
         List<Project> projects = new ArrayList<Project>();
         Project tempProj;
         while(rs.next()){
-            if (rs.getString("user_id").equals(userID)){
+            if (Integer.parseInt(rs.getString("user_id")) == (userID)){
                 int id = Integer.parseInt(rs.getString("id"));
                 String project = rs.getString("name");
                 User user = getUserById(Integer.parseInt(rs.getString("user_id")));

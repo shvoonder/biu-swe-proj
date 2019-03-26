@@ -42,6 +42,9 @@ public class LoginPage extends HttpServlet {
                 session.setAttribute("username",userName);
                 session.setAttribute("isAdmin", user.isisAdmin());
                 session.setAttribute("user", user);
+                System.out.print(user.getUserName());
+                System.out.print(user.getPassword());
+                System.out.print(user.isisAdmin());
                 if (user.isisAdmin() == true) {
                     response.sendRedirect("ManagerPage");
                 }
