@@ -11,11 +11,13 @@ import javafx.scene.layout.Priority;
 
 public class DBconnection {
 
-    private static final String USERNAME = "dbuser";
-    private static final String PASSWORD = "dbpassword";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
     private static final String CONNURL = "jdbc:mysql://localhost:3306";
     private static final String DBURL = "jdbc:mysql://localhost:3306/SE_proj";
     private static final String DBname = "SE_proj";
+
+
 
 
     public static void CreateAndConnect () throws SQLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
@@ -118,8 +120,11 @@ public class DBconnection {
         Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         Statement stmt=con.createStatement();
         int numOfColEffected = 0;
-        if (!checkIfUserExists(username))
-            numOfColEffected = stmt.executeUpdate("INSERT INTO 'users' ('first_name', 'sure_name', 'user_name', 'email', 'password', 'is_admin') VALUES (\""+firstName+"\",\""+sureName+"\",\""+username+"\",\""+email+"\",\""+password+"\",\""+isAdmin+"\")");
+        if (!checkIfUserExists(username)) {
+            String queryString = String.format("INSERT INTO `se_proj`.`users` (`user_name`, `first_name`, `sure_name`, `email`, `password`, `is_admin`) VALUES ('%s', '%s', '%s', '%s', '%s', '%d')", username, firstName, sureName, email, password, isAdmin ? 1 : 0);
+            System.out.println(queryString);
+            numOfColEffected = stmt.executeUpdate(queryString);
+        }
         if (numOfColEffected != 0)
             return true;
         return false;

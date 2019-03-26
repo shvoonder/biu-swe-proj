@@ -18,7 +18,6 @@ where
 	tasks.project_id = 2 -- integer value should be replaced by java code with the project id
 ;	
 
-
 select
 	sub_tasks.*
 from

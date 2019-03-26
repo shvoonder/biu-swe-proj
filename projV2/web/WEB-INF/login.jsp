@@ -11,6 +11,7 @@
 <header class="w3-container w3-theme w3-padding" id="myHeader">
   <div class="w3-center">
   <h1 class="w3-xxxlarge w3-animate-bottom">Task Manegment Project</h1>
+  </div>
 </header>
 
 <!-- Modal -->
@@ -20,23 +21,25 @@
 </div>
 
 <div style="margin-right:400px; margin-left:400px" class="center">
-<form class="w3-container w3-card-2" action=/auth.html method="get">
+<form class="w3-container w3-card-2" action=LoginPage method="post" id=login>
   <h2>Login</h2>
-  <div class="w3-section">      
+  <div class="w3-section">
     <label>Username</label>
-    <input class="w3-input" type="text" required>
+    <input class="w3-input" name="user" type="text" required>
   </div>
-  <div class="w3-section">      
+  <div class="w3-section">
     <label>Password</label>
-    <input class="w3-input" type="password" required>
+    <input class="w3-input" name="password" type="password" required>
   </div>
-  <div class="w3-section">      
+
+  <div class="w3-section">
     <button class="w3-button w3-theme" type="submit" formmethod="post">Login</button>
   </div>
+  <div <h3 class="w3-large w3-animate-top w3-center">Don't have an account?</h3>
+    <div class="w3-white">
+      <a href="SignupPage" class="w3-button">Sign up now</a>
 </form>
 </div>
-</div>
 <hr>
-
 </body>
 </html>

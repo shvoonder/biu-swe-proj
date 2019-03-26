@@ -20,7 +20,7 @@
 </div>
 
 <div style="margin-right:400px; margin-left:400px" class="center">
-<form class="w3-container w3-card-2" action=/auth.html method="get">
+<form class="w3-container w3-card-2" action=/LoginPage method="get">
   <h2>Login</h2>
   <div class="w3-section">      
     <label>Username</label>

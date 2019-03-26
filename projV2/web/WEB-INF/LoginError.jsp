@@ -17,8 +17,8 @@
 <hr>
 
 <div class="w3-center">
-  <h1 class="w3-large"> An error accured. Plesae go back and try again.
-  <form method="get" action="index.html">
+  <h1 class="w3-large"> The username or password is incorrect. Please try again.
+  <form method="get" action="LoginPage">
      <h1 class="w3-large"></h1>
      <button class="w3-button w3-theme" type="submit">Go Back</button>
   </form>

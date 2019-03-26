@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Task Manegment Project - page not found</title>
+<title>Task Manegment Project - Error</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -10,21 +10,22 @@
 <!-- Header -->
 <header class="w3-container w3-theme w3-padding" id="myHeader">
   <div class="w3-center">
-  <h1 class="w3-large w3-animate-bottom">Task Manegment Project</h1>
+  <h1 class="w3-xxxlarge w3-animate-bottom">Task Manegment Project</h1>
 </header>
 
 <!-- Modal -->
 <hr>
+
 <div class="w3-center">
-  <img src="assets/404.gif" border="5"/> 
-</div>
-<div class="w3-center">
-  <h1 class="w3-large">It either our fault or yours.</h1>
-  <h1 class="w3-large">We won't tell if you won't.</h1>
-  <h1 class="w3-xxlarge">🤫</h1>
-  <form method="get" action="login.html">
-     <button class="w3-button w3-theme" type="submit">Back To Safety</button>
+  <h1 class="w3-large"> An error accured. Plesae go back and try again.
+  <form method="get" action="LoginPage">
+     <h1 class="w3-large"></h1>
+     <button class="w3-button w3-theme" type="submit">Go Back</button>
   </form>
+  
 </div>
+
+
+
 </body>
 </html>

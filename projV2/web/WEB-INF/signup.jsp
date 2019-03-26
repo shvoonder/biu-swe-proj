@@ -19,22 +19,31 @@
 </div>
 
 <div style="margin-right:400px; margin-left:400px" class="center">
-<form class="w3-container w3-card-2" action=404.html method="post" id=login>
-  <h2>sign up</h2>
+<form class="w3-container w3-card-2" action=SignupPage method="post" id=login>
+  <h2>Sign Up</h2>
   <div class="w3-section">
-    <label>first name</label>
+    <p>
+    <label>
+    <% if (request.getAttribute("error") != null && (request.getAttribute("error").equals(true))){%>
+      <%= new String("this username is taken, please select another")%>
+    <%}%>
+    </label>
+    </p>
+    <label>First Name</label>
     <input class="w3-input"  name="first_name" type="text" required>
-    <label>last name</label>
+    <label>Last Name</label>
     <input class="w3-input"  name="last_name" type="text" required>
     <label>Username</label>
     <input class="w3-input"  name="user_name" type="text" required>
     <label>Password</label>
     <input class="w3-input"  name="password" type="password" required>
     <label>Email</label>
-    <input class="w3-input"  name="Email" type="email" required>
+    <input class="w3-input"  name="email" type="email" required>
+    <label>Admin Privileges</label>
+    <input class="w3-input"  name="is_admin" type="checkbox" value="yes">
   </div>
   <div class="w3-section">
-    <button class="w3-button w3-theme" type="submit" formmethod="post">sign up</button>
+    <button class="w3-button w3-theme" type="submit" formmethod="post">Sign Up</button>
   </div>
   </div>
 </form>
