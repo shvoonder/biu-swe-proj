@@ -1,6 +1,7 @@
 package Controller;
 
 import DB.DBconnection;
+import Model.PriorityType;
 import Model.Project;
 import Model.Task;
 import Model.User;
@@ -14,13 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
-@WebServlet("/ProjectScreen")
-public class ProjectScreen extends HttpServlet {
+@WebServlet("/NewTaskScreen")
+public class NewTaskScreen extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public ProjectScreen() {
+    public NewTaskScreen() {
         super();
     }
 
@@ -30,10 +30,8 @@ public class ProjectScreen extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/LoginError.jsp");
             rd.forward(request,response);
         }
-        User user = null;
         try {
-            user = DBconnection.getUserByUserName(session.getAttribute("username").toString());
-            System.out.println(user.getId());
+            request.setAttribute("users", DBconnection.getUserListArr());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -43,26 +41,32 @@ public class ProjectScreen extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        List<Task> tasks = null;
-        try {
-            tasks = DBconnection.getTaskByProject(Integer.parseInt(request.getParameter("project")));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        request.setAttribute("tasks", tasks);
-        session.setAttribute("project", request.getParameter("project"));
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ProjectScreen.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/NewTaskScreen.jsp");
         rd.forward(request,response);
     }
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session=request.getSession(true);
+        int task_id = (int)session.getAttribute("task");
+        String task = (String)request.getParameter("taskName");
+        String priority = (String)request.getParameter("priority");
+        String user_string = (String)request.getParameter("user");
+        try {
+            User user = DBconnection.getUserById(Integer.parseInt(user_string));
+            PriorityType priorityType = DBconnection.getPriorityTypeById(Integer.parseInt(priority));
+            DBconnection.cre(task_id, task, priorityType, user);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+        Project project = (Project)session.getAttribute("project");
+        response.sendRedirect("ProjectScreen" + "?project=" + project.getId());
     }
 }

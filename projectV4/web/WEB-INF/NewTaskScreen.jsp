@@ -12,25 +12,24 @@
 
 <body>
 <form class="w3-container w3-card-2">
-  <h2>Task View</h2>
+  <h2>Create New Task</h2>
   <div class="w3-section">
-    <% Task task = (Task)request.getAttribute("task"); %>
     <label>Task Name</label>
-    <input class="w3-input" name="taskName" type="text" value="<%=task.getTask()%>" required>
+    <input class="w3-input" name="taskName" type="text" value="Task Name" required>
     <select name="priority" required>
-      <option value="1" <%if((task.getPriority().getId() == 1)){%> selected <%}%>>Low</option>
-      <option value="2" <%if((task.getPriority().getId() == 2)){%> selected <%}%>>Medium</option>
-      <option value="3" <%if((task.getPriority().getId() == 3)){%> selected <%}%>>High</option>
+      <option value="1">Low</option>
+      <option value="2">Medium</option>
+      <option value="3">High</option>
     </select>
   </div>
     <select name="user" required>
       <%List<User> users = (List<User>)request.getAttribute("users");%>
       <%for(User u:users){%>
-      <option value="<%=u.getId()%>"<%if(task.getUser().getId() == u.getId()){%> selected <%}%>><%=u.getFirstName() + " " + u.getSureName()%></option>
+      <option value="<%=u.getId()%>"><%=u.getFirstName() + " " + u.getSureName()%></option>
       <%}%>
     </select>
   <div class="w3-section">
-    <button class="w3-button w3-theme" type="submit" action="TaskScreen" formmethod="post">Submit</button>
+    <button class="w3-button w3-theme" type="submit" action="NewTaskScreen" formmethod="post">Create New Task</button>
   </div>
 </form>
 </div>

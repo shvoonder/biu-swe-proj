@@ -41,10 +41,10 @@ div.scrollWindows {
       <thead>
       <tr class="w3-theme">
         <th> <div class="w3-left">
-          <a class="w3-button w3-circle  w3-large w3-theme"><i class="fa fa-plus"></i></a> &nbsp
+          <a class="w3-button w3-circle  w3-large w3-theme" href="NewTaskScreen"><i class="fa fa-plus"></i></a> &nbsp
         </div> Name Of Task</th>
         <th>Owner</th>
-        <th>priority</th>
+        <th>Priority</th>
       </tr>
       </thead>
       <tbody>

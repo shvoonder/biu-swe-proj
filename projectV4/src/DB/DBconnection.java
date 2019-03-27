@@ -86,7 +86,7 @@ public class DBconnection {
         ResultSet rs = getProject();
         Project project = null;
         while(rs.next()){
-            if (rs.getString("user_id").equals(project_id)){
+            if (Integer.parseInt(rs.getString("id")) == (project_id)){
                 int id = Integer.parseInt(rs.getString("id"));
                 String name = rs.getString("name");
                 PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));
@@ -136,6 +136,19 @@ public class DBconnection {
         Statement stmt=con.createStatement();
         int numOfColEffected = 0;
         String queryString = String.format("INSERT INTO `se_proj`.`projects` (`priority_id`, `user_id`, `name`) VALUES ('%d', '%d', '%s')", priority.getId(), user.getId(), name);
+        System.out.println(queryString);
+        numOfColEffected = stmt.executeUpdate(queryString);
+        if (numOfColEffected != 0)
+            return true;
+        return false;
+    }
+
+    public static boolean updateTask(int id, String task ,PriorityType priority, User user) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        Statement stmt=con.createStatement();
+        int numOfColEffected = 0;
+        String queryString = String.format("UPDATE `se_proj`.`tasks` SET `priority_id` = '%d', `user_id` = '%d', `task` = '%s' WHERE `id` = '%d'", priority.getId(), user.getId(), task, id);
         System.out.println(queryString);
         numOfColEffected = stmt.executeUpdate(queryString);
         if (numOfColEffected != 0)
@@ -279,7 +292,7 @@ public class DBconnection {
                 int id = Integer.parseInt(rs.getString("id"));
                 String task = rs.getString("task");
                 PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));
-                User user = getUserById(Integer.parseInt((rs.getString("user_id"))));
+                User user = getUserById(Integer.parseInt(rs.getString("user_id")));
                 Project project = getProjectById(Integer.parseInt(rs.getString("project_id")));
                 tempTask = new Task(id, task, priority, user, project);
                 tasks.add(tempTask);
@@ -292,11 +305,11 @@ public class DBconnection {
         ResultSet rs = getTask();
         Task tasks = null;
         while(rs.next()){
-            if (Integer.parseInt(rs.getString("project_id")) == (TaskId)){
+            if (Integer.parseInt(rs.getString("id")) == (TaskId)){
                 int id = Integer.parseInt(rs.getString("id"));
                 String task = rs.getString("task");
                 PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));
-                User user = getUserByUserName(rs.getString("user_id"));
+                User user = getUserById(Integer.parseInt(rs.getString("user_id")));
                 Project project = getProjectById(Integer.parseInt(rs.getString("project_id")));
                 tasks = new Task(id, task, priority, user, project);
             }
