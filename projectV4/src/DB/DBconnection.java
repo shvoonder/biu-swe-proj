@@ -26,7 +26,7 @@ public class DBconnection {
         String sqlCreateProjects = "CREATE TABLE `SE_proj`.`projects` ( `id` INT(30) NOT NULL AUTO_INCREMENT , `name` VARCHAR(30) NOT NULL , `priority_id` INT(30) NOT NULL , `user_id` INT(30) NOT NULL , PRIMARY KEY (`id`))";
         String sqlCreateSkillTypes = "CREATE TABLE `SE_proj`.`skil_types` ( `id` INT(30) NOT NULL AUTO_INCREMENT , `skill` VARCHAR(30) NOT NULL , PRIMARY KEY (`id`))";
         String sqlCreateSubTasks = "CREATE TABLE `SE_proj`.`sub_tasks` ( `id` INT(30) NOT NULL AUTO_INCREMENT , `sub_task` VARCHAR(300) NOT NULL , `user_id` INT NOT NULL ,  `task_id` INT NOT NULL , PRIMARY KEY (`id`))";
-        String sqlCreateTasks = "CREATE TABLE `SE_proj`.`tasks` ( `id` INT(30) NOT NULL AUTO_INCREMENT , `task` VARCHAR(300) NOT NULL , `priority_id` INT NOT NULL , `user_id` INT NOT NULL , `skill_id` INT NOT NULL , `project_id` INT NOT NULL , PRIMARY KEY (`id`))";
+        String sqlCreateTasks = "CREATE TABLE `SE_proj`.`tasks` ( `id` INT(30) NOT NULL AUTO_INCREMENT , `task` VARCHAR(300) NOT NULL , `priority_id` INT NOT NULL , `user_id` INT NOT NULL , `skill_id` INT NOT NULL , `project_id` INT NOT NULL, `status` INT DEFAULT '0', PRIMARY KEY (`id`))";
         String sqlCreateUserAuth = "CREATE TABLE `SE_proj`.`user_auth` ( `id` INT(30) NOT NULL AUTO_INCREMENT , `user_name` VARCHAR(30) NOT NULL , `password` VARCHAR(30) NOT NULL , `user_id` INT(30) NOT NULL , PRIMARY KEY (`id`))";
         String sqlCreateUsers = "CREATE TABLE `SE_proj`.`users` ( `id` INT(30) NOT NULL AUTO_INCREMENT , `first_name` VARCHAR(30) NOT NULL , `sure_name` VARCHAR(30) NOT NULL , `user_name` VARCHAR(30) NOT NULL , `email` VARCHAR(50) NOT NULL , `password` VARCHAR(50) NOT NULL,  `is_admin` BOOLEAN NOT NULL , PRIMARY KEY (`id`))";
 
@@ -55,6 +55,9 @@ public class DBconnection {
             stmtDB.executeUpdate(sqlCreateTasks);
             stmtDB.executeUpdate(sqlCreateUserAuth);
             stmtDB.executeUpdate(sqlCreateUsers);
+            stmtDB.executeUpdate("INSERT INTO `se_proj`.`priority_type` (id, name) VALUES ('1', 'Low');");
+            stmtDB.executeUpdate("INSERT INTO `se_proj`.`priority_type` (id, name) VALUES ('2', 'Medium');");
+            stmtDB.executeUpdate("INSERT INTO `se_proj`.`priority_type` (id, name) VALUES ('3', 'High');");
         }
     }
 
@@ -156,12 +159,26 @@ public class DBconnection {
         return false;
     }
 
-    public static boolean addTask (String userID, String task, int priorityID, int skillID, int projectID) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
+    public static boolean updateTaskStatus(int id, int newStatus) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         Statement stmt=con.createStatement();
         int numOfColEffected = 0;
-        numOfColEffected = stmt.executeUpdate("INSERT INTO 'tasks' ('task','priority_id','user_id','skill_id','project_id') VALUES (\""+task+"\",\""+priorityID+"\",\""+userID+"\",\""+skillID+"\",\""+projectID+"\")");
+        String queryString = String.format("UPDATE `se_proj`.`tasks` SET status = '%d' WHERE `id` = '%d'",newStatus, id);
+        System.out.println(queryString);
+        numOfColEffected = stmt.executeUpdate(queryString);
+        if (numOfColEffected != 0)
+            return true;
+        return false;
+    }
+
+    public static boolean addTask (int userID, String task, int priorityId, int projectID) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException{
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        Statement stmt=con.createStatement();
+        String queryString = String.format("INSERT INTO `se_proj`.`tasks` (`project_id`, `priority_id`, `user_id`, `task`, `skill_id`, `status`) VALUES ('%d', '%d', '%d', '%s', '1', '0')", projectID, priorityId, userID, task);
+        int numOfColEffected = 0;
+        numOfColEffected = stmt.executeUpdate(queryString);
         if (numOfColEffected != 0)
             return true;
         return false;
@@ -172,7 +189,7 @@ public class DBconnection {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         Statement stmt=con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM tasks");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM tasks order by status");
         return rs;
     }
 
@@ -275,7 +292,8 @@ public class DBconnection {
                 PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));
                 User user = getUserById(Integer.parseInt(rs.getString("user_id")));
                 Project project = getProjectById(Integer.parseInt(rs.getString("project_id")));
-                tempTask = new Task(id, task, priority, user, project);
+                int status = Integer.parseInt(rs.getString("status"));
+                tempTask = new Task(id, task, priority, user, project, status);
                 tasks.add(tempTask);
             }
         }
@@ -294,7 +312,8 @@ public class DBconnection {
                 PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));
                 User user = getUserById(Integer.parseInt(rs.getString("user_id")));
                 Project project = getProjectById(Integer.parseInt(rs.getString("project_id")));
-                tempTask = new Task(id, task, priority, user, project);
+                int status = Integer.parseInt(rs.getString("status"));
+                tempTask = new Task(id, task, priority, user, project, status);
                 tasks.add(tempTask);
             }
         }
@@ -311,7 +330,8 @@ public class DBconnection {
                 PriorityType priority = getPriorityTypeById(Integer.parseInt(rs.getString("priority_id")));
                 User user = getUserById(Integer.parseInt(rs.getString("user_id")));
                 Project project = getProjectById(Integer.parseInt(rs.getString("project_id")));
-                tasks = new Task(id, task, priority, user, project);
+                int status = Integer.parseInt(rs.getString("status"));
+                tasks = new Task(id, task, priority, user, project, status);
             }
         }
         return tasks;
@@ -360,5 +380,17 @@ public class DBconnection {
         return projects;
     }
 
+    public static User getMostAvailableUser () throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection con = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        Statement stmt=con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT user_id, COUNT(*) FROM tasks GROUP BY user_id ORDER BY COUNT(*)");
+        while (rs.next()) {
+            User mostAvailableUser = getUserById(Integer.parseInt(rs.getString("user_id")));
+            System.out.println(mostAvailableUser);
+            return mostAvailableUser;
+        }
+        return null;
+    }
 
 }

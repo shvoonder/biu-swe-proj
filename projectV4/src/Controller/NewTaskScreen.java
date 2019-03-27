@@ -32,6 +32,9 @@ public class NewTaskScreen extends HttpServlet {
         }
         try {
             request.setAttribute("users", DBconnection.getUserListArr());
+            User MostAvalible = DBconnection.getMostAvailableUser();
+            System.out.println(MostAvalible);
+            request.setAttribute("most_available", DBconnection.getMostAvailableUser());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -48,14 +51,15 @@ public class NewTaskScreen extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession(true);
-        int task_id = (int)session.getAttribute("task");
         String task = (String)request.getParameter("taskName");
         String priority = (String)request.getParameter("priority");
         String user_string = (String)request.getParameter("user");
         try {
             User user = DBconnection.getUserById(Integer.parseInt(user_string));
             PriorityType priorityType = DBconnection.getPriorityTypeById(Integer.parseInt(priority));
-            DBconnection.cre(task_id, task, priorityType, user);
+            String project = (String)session.getAttribute("project");
+            DBconnection.addTask(user.getId(), task, Integer.parseInt(priority), Integer.parseInt(project));
+            response.sendRedirect("ProjectScreen" + "?project=" + Integer.parseInt(project));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -66,7 +70,5 @@ public class NewTaskScreen extends HttpServlet {
             e.printStackTrace();
         }
 
-        Project project = (Project)session.getAttribute("project");
-        response.sendRedirect("ProjectScreen" + "?project=" + project.getId());
     }
 }

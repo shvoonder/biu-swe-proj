@@ -7,13 +7,15 @@ public class Task {
     private PriorityType priority;
     private User user;
     private Project project;
+    private int status;
 
-    public Task(int id, String task, PriorityType priority, User user, Project project) {
+    public Task(int id, String task, PriorityType priority, User user, Project project, int status) {
         this.id = id;
         this.task = task;
         this.priority = priority;
         this.user = user;
         this.project = project;
+        this.status = status;
     }
 
     public int getId() {
@@ -54,5 +56,13 @@ public class Task {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

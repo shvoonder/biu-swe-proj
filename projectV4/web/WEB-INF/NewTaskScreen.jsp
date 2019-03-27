@@ -15,7 +15,7 @@
   <h2>Create New Task</h2>
   <div class="w3-section">
     <label>Task Name</label>
-    <input class="w3-input" name="taskName" type="text" value="Task Name" required>
+    <input class="w3-input" name="taskName" type="text" value="Enter Name Here" required>
     <select name="priority" required>
       <option value="1">Low</option>
       <option value="2">Medium</option>
@@ -28,8 +28,14 @@
       <option value="<%=u.getId()%>"><%=u.getFirstName() + " " + u.getSureName()%></option>
       <%}%>
     </select>
+  <%User mostAvalibleUser = (User)request.getAttribute("most_available");%>
+  <%if (mostAvalibleUser != null){%>
+  <h4>The Most available user is <%=mostAvalibleUser.getFirstName() + " " + mostAvalibleUser.getSureName()%></h4>
+  <%}%>
   <div class="w3-section">
     <button class="w3-button w3-theme" type="submit" action="NewTaskScreen" formmethod="post">Create New Task</button>
+  </div>
+  <div class="w3-section">
   </div>
 </form>
 </div>

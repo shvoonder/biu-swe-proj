@@ -45,6 +45,7 @@ div.scrollWindows {
         </div> Name Of Task</th>
         <th>Owner</th>
         <th>Priority</th>
+        <th>Status</th>
       </tr>
       </thead>
       <tbody>
@@ -61,11 +62,19 @@ div.scrollWindows {
     </a>
   </td>
   <td>
-    <%=t.getUser().getFirstName() + " " + t.getUser().getUserName()%>
+    <%=t.getUser().getFirstName() + " " + t.getUser().getSureName()%>
   </td>
   <td>
     <%=t.getPriority().getName()%>
   </td>
+    <td>
+    <%if (t.getStatus() == 1){%>
+    <%="Done"%>
+    <%}%>
+    <%if (t.getStatus() == 0){%>
+    <%="Active"%>
+    <%}%>
+    </td>
 </tr>
 <%}%>
   </tr>
